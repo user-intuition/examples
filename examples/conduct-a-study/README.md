@@ -1,5 +1,9 @@
 # Conduct a study
 
+[Raw executable source](https://raw.githubusercontent.com/user-intuition/examples/main/examples/conduct-a-study/index.ts) · [Complete source and execution contract](https://docs.userintuition.ai/api-reference/examples/conduct-a-study)
+
+Run from the cloned repository root with Node.js 22.18 or later; the source imports shared helpers from `src/`.
+
 Run `npm run study` from the repository root for a fictional walkthrough without an account or spending. The live example uses an in-depth interview with panel recruitment. Choose the audience and recruitment method with your user; this example is not a default instruction to recruit a panel for every task.
 
 ## 1. Create a draft

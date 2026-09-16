@@ -1,5 +1,9 @@
 # Search research
 
+[Raw executable source](https://raw.githubusercontent.com/user-intuition/examples/main/examples/search-research/index.ts) · [Complete source and execution contract](https://docs.userintuition.ai/api-reference/examples/search-research)
+
+Run from the cloned repository root with Node.js 22.18 or later; the source imports shared helpers from `src/`.
+
 ```sh
 npm run search
 npm run search -- --live --query "What makes customers hesitate before buying?"

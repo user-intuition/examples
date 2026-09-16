@@ -1,5 +1,9 @@
 # Retrieve study results
 
+[Raw executable source](https://raw.githubusercontent.com/user-intuition/examples/main/examples/retrieve-study-results/index.ts) · [Complete source and execution contract](https://docs.userintuition.ai/api-reference/examples/retrieve-study-results)
+
+Run from the cloned repository root with Node.js 22.18 or later; the source imports shared helpers from `src/`.
+
 ```sh
 npm run results
 npm run results -- --live --study YOUR_STUDY_ID

@@ -9,8 +9,8 @@ Add qualitative customer research to an AI agent or product: plan a study, recru
 Requires Node.js 22.18 or later. The examples use native TypeScript support; dependencies are needed only for type checking.
 
 ```sh
-git clone https://github.com/Pen-and-Paper-AI/userintuition-examples.git
-cd userintuition-examples
+git clone https://github.com/user-intuition/examples.git
+cd examples
 npm run demo
 ```
 
@@ -62,3 +62,15 @@ Tests cover reference resolution, explicit launch approval, invalid inputs, and 
 For product/API support: [support@userintuition.ai](mailto:support@userintuition.ai). For an example defect, open an issue with the example name, Node version, and a sanitized reproduction. Never include API keys, participant identities, private transcripts, or account exports.
 
 Examples are licensed under MIT. The service has its own [terms](https://www.userintuition.ai/terms/).
+
+## Agent discovery and source snippets
+
+Fetch [examples.json](https://raw.githubusercontent.com/user-intuition/examples/main/examples.json) for per-workflow commands, inputs, outputs, side effects, and raw source URLs. The source files run inside this repository and import shared helpers; clone the repository before running them.
+
+Documentation pages include the complete TypeScript file and are generated from executable source:
+
+```sh
+npm run docs:sync -- --docs /path/to/userintuition-docs
+```
+
+Run this after source changes, then run the example tests and demos. Do not independently edit the generated code snippets.
