@@ -1,0 +1,28 @@
+{
+  "status": "pending-release-verification",
+  "prepared": "2026-09-16",
+  "existing_openapi_source": "https://docs.userintuition.ai/api-reference/openapi.json",
+  "existing_docs_commit": "555c39fe5195093c5719b0a89f8f47c99887035d",
+  "b2": {
+    "path": "/api/public/v1/studies/{study_id}/report",
+    "method": "get",
+    "response_fields": [
+      "study_id",
+      "study_findings",
+      "participant_responses",
+      "participant_profiles",
+      "recommended_next_steps",
+      "references"
+    ]
+  },
+  "c1": {
+    "path": "/api/public/v1/research/search",
+    "method": "post",
+    "response_fields": [
+      "results",
+      "coverage",
+      "next_cursor"
+    ]
+  },
+  "note": "B2/C1 names and fields are example assumptions. Update this adapter and fixtures after the release; tests alone do not prove production compatibility."
+}

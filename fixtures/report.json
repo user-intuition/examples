@@ -1,0 +1,74 @@
+{
+  "study_id": "example-study",
+  "report_id": "example-report",
+  "report_version": "v1",
+  "generated_at": "2026-09-16T09:00:00Z",
+  "is_stale": false,
+  "coverage": {
+    "eligible_interviews": 2,
+    "analyzed_interviews": 2
+  },
+  "study_findings": {
+    "markdown": "One participant wanted a smaller starter pack [ref-1]. Another prioritized delivery timing [ref-2]. These fictional interviews are not market estimates."
+  },
+  "participant_responses": {
+    "questions": [
+      {
+        "question_id": "q1",
+        "text": "What would you change before trying the product?"
+      }
+    ],
+    "respondents": [
+      {
+        "respondent_id": "r1",
+        "interview_id": "example-interview-1",
+        "answers": [
+          {
+            "question_id": "q1",
+            "summary": "Wants a smaller starter pack before committing.",
+            "reference_ids": [
+              "ref-1"
+            ]
+          }
+        ]
+      },
+      {
+        "respondent_id": "r2",
+        "interview_id": "example-interview-2",
+        "answers": [
+          {
+            "question_id": "q1",
+            "summary": "Needs a delivery window they can plan around.",
+            "reference_ids": [
+              "ref-2"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "participant_profiles": {
+    "markdown": "Fictional fixture: 2 participants; both buy household supplies online. This describes this example sample only."
+  },
+  "recommended_next_steps": [
+    {
+      "title": "Test a smaller starter pack",
+      "rationale": "One of two fictional participants wanted a smaller initial commitment.",
+      "question_to_resolve": "Does pack size affect willingness to try among the intended audience?"
+    }
+  ],
+  "references": [
+    {
+      "reference_id": "ref-1",
+      "interview_id": "example-interview-1",
+      "message_id": "m1",
+      "quote": "I would try a smaller pack before buying a full month."
+    },
+    {
+      "reference_id": "ref-2",
+      "interview_id": "example-interview-2",
+      "message_id": "m2",
+      "quote": "I need to know which day it will arrive."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "target": 5,
+  "country_code": "US",
+  "incident_rate": 50,
+  "frequency": "one-time"
+}

@@ -1,0 +1,51 @@
+{
+  "notice": "Illustrative control flow only. No real participants or results.",
+  "steps": [
+    {
+      "action": "create",
+      "result": {
+        "id": "example-study",
+        "provisioning_status": "draft"
+      }
+    },
+    {
+      "action": "customize",
+      "result": {
+        "response_type": "question",
+        "message": "Which country and audience should this study cover?"
+      }
+    },
+    {
+      "action": "customize",
+      "input": "Relay the user answer; do not invent one.",
+      "result": {
+        "response_type": "study_plan",
+        "message": "Review the persisted plan before recruitment."
+      }
+    },
+    {
+      "action": "review",
+      "requirement": "Show actual audience, screener, guide, language, duration, and recruitment settings."
+    },
+    {
+      "action": "estimate",
+      "requirement": "Use the actual complete cost and timing response; no fabricated price is supplied in this fixture."
+    },
+    {
+      "action": "launch",
+      "requirement": "Only after approval of the current plan and fresh estimate. Launch acknowledgement is not completed research."
+    },
+    {
+      "action": "monitor",
+      "requirement": "Use interview records and explicit fielding status when supported. Paginate before aggregating."
+    },
+    {
+      "action": "generate-report",
+      "requirement": "Explicit generation after reviewing available interview coverage."
+    },
+    {
+      "action": "retrieve",
+      "requirement": "Read the report and inspect supporting interview evidence."
+    }
+  ]
+}

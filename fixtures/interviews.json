@@ -1,0 +1,22 @@
+[
+  {
+    "id": "example-interview-1",
+    "messages": [
+      {
+        "id": "m1",
+        "role": "user",
+        "message": "I would try a smaller pack before buying a full month."
+      }
+    ]
+  },
+  {
+    "id": "example-interview-2",
+    "messages": [
+      {
+        "id": "m2",
+        "role": "user",
+        "message": "I need to know which day it will arrive."
+      }
+    ]
+  }
+]
