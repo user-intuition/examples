@@ -42,3 +42,37 @@ output({
 });
 // Fetch a source with routes.report(result.study.id) or routes.interview(result.source.interview_id).
 // Paginate with the same query/filters and next_cursor. No new study is created by this example.
+
+if (options["fetch-source"]) {
+  const result = response.results[0];
+  if (!result) {
+    output({ source_status: "No search matches; no source was fetched." });
+  } else {
+    const interviewId = result.source.interview_id;
+    const source = options.live
+      ? await new ResearchClient().request(
+          "GET",
+          interviewId
+            ? routes.interview(interviewId)
+            : routes.report(result.study.id),
+        )
+      : interviewId
+        ? (
+            await fixture<Array<{ id: string; messages: unknown[] }>>(
+              "interviews",
+            )
+          ).find((item) => item.id === interviewId)
+        : await fixture("report");
+    if (!source)
+      throw new Error(
+        "Search source was not found; do not infer its contents.",
+      );
+    output({
+      result_id: result.result_id,
+      source_kind: interviewId ? "interview" : "report",
+      source,
+      instruction:
+        "Check source context and report version before citing. This is one result, not exhaustive coverage.",
+    });
+  }
+}

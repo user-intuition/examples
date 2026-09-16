@@ -3,6 +3,7 @@ export function args() {
   return parseArgs({
     options: {
       live: { type: "boolean", default: false },
+      "fetch-source": { type: "boolean", default: false },
       action: { type: "string", default: "overview" },
       study: { type: "string" },
       message: { type: "string" },

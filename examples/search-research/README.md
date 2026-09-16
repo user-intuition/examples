@@ -25,3 +25,14 @@ npm run search -- --live --query "What makes customers hesitate before buying?" 
 ```
 
 Keep query and filters unchanged while paging. A successful empty `results` array is distinct from an HTTP error; the example throws on errors. The API key determines which research is authorized. Search never creates a study or starts recruitment.
+
+## Run source retrieval
+
+Add `--fetch-source` to retrieve the first available supporting source alongside the results:
+
+```sh
+npm run search -- --fetch-source
+npm run search -- --live --study YOUR_STUDY_ID --fetch-source
+```
+
+Fixture mode reads the fictional source locally. Live mode makes one additional read: an interview when referenced, or the matching report for a search finding. It does not regenerate research or launch a study. Inspect the passage and study context before citing.
