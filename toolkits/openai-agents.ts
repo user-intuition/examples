@@ -6,6 +6,7 @@ const server = new MCPServerStreamableHttp({
   url, name: 'userintuition-research',
   requestInit: { headers },
   cacheToolsList: true,
+  useStructuredContent: true,
 });
 
 try {

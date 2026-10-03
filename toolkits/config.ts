@@ -1,18 +1,26 @@
-export function config() {
-  const apiKey = process.env.USERINTUITION_API_KEY;
-  const modelKey = process.env.OPENAI_API_KEY;
-  const studyId = process.env.USERINTUITION_STUDY_ID;
+export function config(env: NodeJS.ProcessEnv = process.env) {
+  const apiKey = env.USERINTUITION_API_KEY;
+  const modelKey = env.OPENAI_API_KEY;
+  const studyId = env.USERINTUITION_STUDY_ID;
+  const url = env.USERINTUITION_MCP_URL || 'https://mcp.userintuition.ai/read-only/mcp';
   if (!apiKey || !modelKey || !studyId) {
     throw new Error('Set USERINTUITION_API_KEY, OPENAI_API_KEY, and USERINTUITION_STUDY_ID in the environment.');
   }
-  if (!/^[0-9a-f]{8}-[0-9a-f-]{27,}$/i.test(studyId)) {
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(studyId)) {
     throw new Error('USERINTUITION_STUDY_ID must be a UUID.');
   }
+  const endpoint = new URL(url);
+  if (endpoint.protocol !== 'https:' ||
+      !['mcp.userintuition.ai', 'mcp.sandbox.userintuition.ai'].includes(endpoint.hostname) ||
+      endpoint.pathname !== '/read-only/mcp' ||
+      endpoint.search || endpoint.hash || endpoint.username || endpoint.password || endpoint.port) {
+    throw new Error('USERINTUITION_MCP_URL must be a User Intuition read-only MCP endpoint.');
+  }
   return {
-    url: 'https://mcp.userintuition.ai/read-only/mcp',
+    url: endpoint.href,
     headers: { Authorization: `Bearer ${apiKey}` },
-    model: process.env.OPENAI_MODEL || 'gpt-4.1-mini',
-    prompt: `For study ${studyId}, read the saved plan and report overview. Summarize the main findings with source identifiers. State when no report is available.`,
+    model: env.OPENAI_MODEL || 'gpt-4.1-mini',
+    prompt: `For study ${studyId}, read the saved plan and report overview. If a report is available, read its study findings and references. Summarize the main findings with source identifiers that the report actually returns. State when no report or source identifiers are available.`,
   };
 }
 

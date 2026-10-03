@@ -8,6 +8,7 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "test": "node --test *.test.ts",
     "openai": "node --experimental-strip-types openai-agents.ts",
     "langchain": "node --experimental-strip-types langchain.ts",
     "ai-sdk": "node --experimental-strip-types ai-sdk.ts"
