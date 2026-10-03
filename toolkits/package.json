@@ -1,0 +1,30 @@
+{
+  "name": "@userintuition-ai/agent-toolkit-examples",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test *.test.ts",
+    "openai": "node --experimental-strip-types openai-agents.ts",
+    "langchain": "node --experimental-strip-types langchain.ts",
+    "ai-sdk": "node --experimental-strip-types ai-sdk.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/mcp": "^2.0.65",
+    "@ai-sdk/openai": "^4.0.83",
+    "@langchain/mcp-adapters": "^2.0.0",
+    "@langchain/openai": "^1.0.0",
+    "@openai/agents": "^0.18.0",
+    "ai": "^7.0.126",
+    "langchain": "^1.0.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "~5.9.3"
+  }
+}

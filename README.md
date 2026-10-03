@@ -22,6 +22,8 @@ The default is **fictional fixture mode**: no credentials, network calls, invita
 | [Retrieve study results](examples/retrieve-study-results/) | Read report sections and follow references to interviews | `npm run results` |
 | [Search research](examples/search-research/) | Find relevant evidence, inspect coverage, and retrieve sources | `npm run search` |
 
+For agent frameworks, see the [OpenAI Agents SDK, LangChain, and Vercel AI SDK examples](toolkits/README.md). They connect to the authenticated read-only MCP profile.
+
 ## Compatibility
 
 **B2/C1 release verification is pending.** The results and search adapters implement the agreed example shapes; final endpoint names and nested schemas must be reconciled with the release. See [release-contract.json](release-contract.json) and the [verification checklist](docs/release-check.md). Do not infer production compatibility from passing fixture tests.
