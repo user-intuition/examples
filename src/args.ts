@@ -23,8 +23,8 @@ export function required(value: string | undefined, flag: string): string {
 }
 export function limit(value: string): number {
   const n = Number(value);
-  if (!Number.isInteger(n) || n < 1 || n > 100)
-    throw new Error("--limit must be an integer from 1 to 100.");
+  if (!Number.isInteger(n) || n < 1 || n > 50)
+    throw new Error("--limit must be an integer from 1 to 50.");
   return n;
 }
 export function assertLaunchApproval(

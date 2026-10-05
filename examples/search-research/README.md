@@ -1,34 +1,33 @@
 # Search research
 
-[Raw executable source](https://raw.githubusercontent.com/user-intuition/examples/main/examples/search-research/index.ts) · [Complete source and execution contract](https://docs.userintuition.ai/api-reference/examples/search-research)
+[Raw executable source](https://raw.githubusercontent.com/user-intuition/examples/main/examples/search-research/index.ts) · [Complete source and execution contract](https://docs.userintuition.ai/api-reference/examples/search-research-example)
 
 Run from the cloned repository root with Node.js 22.18 or later; the source imports shared helpers from `src/`.
 
 ```sh
 npm run search
-npm run search -- --live --query "What makes customers hesitate before buying?"
 npm run search -- --live --query "What makes customers hesitate before buying?" --study YOUR_STUDY_ID
 ```
 
-Fixture mode returns a fixed fictional match; it does not execute your query. Live mode uses the C1 path and fields in `src/contracts.ts`, which require [release verification](../../docs/release-check.md).
+Fixture mode returns a fixed fictional match; it does not execute your query. Live mode requires one study ID and uses the [verified public search contract](../../docs/release-check.md).
 
 The example searches findings and participant-response summaries. The intended service combines keyword and semantic matching. It retrieves evidence; it does not produce the calling agent's business recommendation.
 
 ## Understand the result
 
-Read the content type, text kind, study context, freshness, and supporting references. A response summary is not a direct quote. Recommendations should be included only when explicitly requested and remain labeled as proposed research.
+Search returns `studies[]`, each with an `index_status`, report IDs, and canonical `results[]`. Read each result's `content_type` and structured `content`; a participant response summary is not a direct quote. An `updating` index may still point to an older indexed report.
 
-The coverage object states what was searched. No report matches do not prove a topic never appeared in a transcript. Do not claim transcript search when `transcripts_searched` is false.
+The endpoint searches indexed plans and report content, not full transcripts. No match does not prove a topic never appeared in an interview. `generated_content_returned` is always false; use the separate answer endpoint for cited synthesis.
 
-For more context, fetch `routes.report(result.study.id)` or `routes.interview(result.source.interview_id)` through `ResearchClient`. Preserve report/version and message identifiers when available. Do not combine repeated matches from the same underlying interview into independent supporting participants.
+For more context, fetch `routes.reportFull(study.study_id)` or `routes.interview(result.interview_id)` through `ResearchClient`. Preserve the `content_id`, `report_id`, and interview ID when available. Do not combine repeated matches from the same underlying interview into independent supporting participants.
 
 ## Pagination
 
 ```sh
-npm run search -- --live --query "What makes customers hesitate before buying?" --cursor NEXT_CURSOR
+npm run search -- --live --query "What makes customers hesitate before buying?" --study YOUR_STUDY_ID --cursor NEXT_CURSOR
 ```
 
-Keep query and filters unchanged while paging. A successful empty `results` array is distinct from an HTTP error; the example throws on errors. The API key determines which research is authorized. Search never creates a study or starts recruitment.
+Keep query, filters, and limit unchanged while paging. Follow cursors until `next_cursor` is null; the final page can contain no results. A successful empty nested `results[]` is distinct from an HTTP error. Search never creates a study or starts recruitment.
 
 ## Run source retrieval
 

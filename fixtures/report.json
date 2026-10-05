@@ -1,74 +1,48 @@
 {
+  "schema_version": "report-v2",
+  "structure_status": "structured",
   "study_id": "example-study",
   "report_id": "example-report",
-  "report_version": "v1",
-  "generated_at": "2026-09-16T09:00:00Z",
+  "included_sections": ["references", "study_findings", "participant_profiles", "participant_responses", "evidence_coverage", "recommended_next_steps"],
+  "available_sections": ["references", "study_findings", "participant_profiles", "participant_responses", "evidence_coverage", "recommended_next_steps"],
+  "interview_count": 2,
+  "interview_count_basis": "saved_evidence",
   "is_stale": false,
-  "coverage": {
-    "eligible_interviews": 2,
-    "analyzed_interviews": 2
-  },
   "study_findings": {
-    "markdown": "One participant wanted a smaller starter pack [ref-1]. Another prioritized delivery timing [ref-2]. These fictional interviews are not market estimates."
-  },
-  "participant_responses": {
-    "questions": [
+    "learning_goals": [
       {
-        "question_id": "q1",
-        "text": "What would you change before trying the product?"
-      }
-    ],
-    "respondents": [
-      {
-        "respondent_id": "r1",
-        "interview_id": "example-interview-1",
-        "answers": [
-          {
-            "question_id": "q1",
-            "summary": "Wants a smaller starter pack before committing.",
-            "reference_ids": [
-              "ref-1"
-            ]
-          }
-        ]
-      },
-      {
-        "respondent_id": "r2",
-        "interview_id": "example-interview-2",
-        "answers": [
-          {
-            "question_id": "q1",
-            "summary": "Needs a delivery window they can plan around.",
-            "reference_ids": [
-              "ref-2"
-            ]
-          }
+        "learning_goal_id": "goal-1",
+        "learning_goal": "What would people change before trying the product?",
+        "findings": [
+          { "finding_id": "finding-1", "heading": "Smaller starter pack", "content": "One fictional participant wanted a smaller initial commitment.", "reference_ids": ["ref-1"] },
+          { "finding_id": "finding-2", "heading": "Predictable delivery", "content": "A second fictional participant needed a delivery window.", "reference_ids": ["ref-2"] }
         ]
       }
     ]
   },
-  "participant_profiles": {
-    "markdown": "Fictional fixture: 2 participants; both buy household supplies online. This describes this example sample only."
-  },
-  "recommended_next_steps": [
+  "participant_responses": [
     {
-      "title": "Test a smaller starter pack",
-      "rationale": "One of two fictional participants wanted a smaller initial commitment.",
-      "question_to_resolve": "Does pack size affect willingness to try among the intended audience?"
-    }
-  ],
-  "references": [
-    {
-      "reference_id": "ref-1",
       "interview_id": "example-interview-1",
-      "message_id": "m1",
-      "quote": "I would try a smaller pack before buying a full month."
+      "overall_takeaways": ["A smaller pack would lower the barrier to trying the product."],
+      "learning_goal_responses": [
+        { "learning_goal_id": "goal-1", "summary": "Wants a smaller starter pack before committing.", "quote": "I would try a smaller pack before buying a full month." }
+      ]
     },
     {
-      "reference_id": "ref-2",
       "interview_id": "example-interview-2",
-      "message_id": "m2",
-      "quote": "I need to know which day it will arrive."
+      "overall_takeaways": ["Delivery timing matters."],
+      "learning_goal_responses": [
+        { "learning_goal_id": "goal-1", "summary": "Needs a delivery window they can plan around.", "quote": "I need to know which day it will arrive." }
+      ]
     }
+  ],
+  "participant_profiles": [],
+  "evidence_coverage": { "text": "Two fictional interviews; this is not a market estimate." },
+  "recommended_next_steps": [
+    { "action": "test", "title": "Test a smaller starter pack", "rationale": "One fictional participant wanted a smaller initial commitment." }
+  ],
+  "references": [
+    { "reference_id": "ref-1", "interview_id": "example-interview-1", "turn_id": "m1", "message_text": "I would try a smaller pack before buying a full month." },
+    { "reference_id": "ref-2", "interview_id": "example-interview-2", "turn_id": "m2", "message_text": "I need to know which day it will arrive." }
   ]
 }

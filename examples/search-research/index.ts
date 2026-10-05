@@ -1,9 +1,8 @@
-import { args, limit } from "../../src/args.ts";
+import { args, limit, required } from "../../src/args.ts";
 import {
   ResearchClient,
   fixture,
   output,
-  releaseNotice,
 } from "../../src/client.ts";
 import {
   routes,
@@ -17,11 +16,10 @@ const request: SearchRequest = {
   limit: limit(options.limit),
   cursor: options.cursor ?? null,
   filters: {
+    study_ids: [options.live ? required(options.study, "study") : (options.study ?? "example-study")],
     content_types: ["study_finding", "participant_response"],
-    ...(options.study ? { study_ids: [options.study] } : {}),
   },
 };
-if (options.live) releaseNotice();
 const response = options.live
   ? await new ResearchClient().request<SearchResponse>(
       "POST",
@@ -29,9 +27,10 @@ const response = options.live
       request,
     )
   : await fixture<SearchResponse>("search");
-if (!Array.isArray(response.results))
+if (!Array.isArray(response.studies) ||
+    response.studies.some((study) => !Array.isArray(study.results)))
   throw new Error(
-    "Unexpected search response: results is not an array. Check the released contract.",
+    "Unexpected search response: studies or nested results is not an array.",
   );
 output({
   mode: options.live
@@ -40,21 +39,24 @@ output({
   request,
   response,
 });
-// Fetch a source with routes.report(result.study.id) or routes.interview(result.source.interview_id).
+// Fetch a source with routes.reportFull(study.study_id) or routes.interview(result.interview_id).
 // Paginate with the same query/filters and next_cursor. No new study is created by this example.
 
 if (options["fetch-source"]) {
-  const result = response.results[0];
-  if (!result) {
+  const first = response.studies.flatMap((study) =>
+    study.results.map((result) => ({ study, result })),
+  )[0];
+  if (!first) {
     output({ source_status: "No search matches; no source was fetched." });
   } else {
-    const interviewId = result.source.interview_id;
+    const { study, result } = first;
+    const interviewId = result.interview_id;
     const source = options.live
       ? await new ResearchClient().request(
           "GET",
           interviewId
             ? routes.interview(interviewId)
-            : routes.report(result.study.id),
+            : routes.reportFull(study.study_id),
         )
       : interviewId
         ? (
@@ -68,11 +70,13 @@ if (options["fetch-source"]) {
         "Search source was not found; do not infer its contents.",
       );
     output({
-      result_id: result.result_id,
+      content_id: result.content_id,
+      study_id: study.study_id,
+      indexed_report_id: study.indexed_report_id,
       source_kind: interviewId ? "interview" : "report",
       source,
       instruction:
-        "Check source context and report version before citing. This is one result, not exhaustive coverage.",
+        "Check source context and the indexed report ID before citing. This is one result, not exhaustive coverage.",
     });
   }
 }

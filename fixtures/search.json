@@ -1,42 +1,33 @@
 {
-  "results": [
+  "studies": [
     {
-      "result_id": "example-result-1",
-      "content_type": "participant_response",
-      "text": "The participant wanted a smaller initial commitment before buying a full month.",
-      "text_kind": "generated_summary",
-      "study": {
-        "id": "example-study",
-        "title": "Starter Pack Feedback (fictional)",
-        "analyzed_interviews": 2
-      },
-      "source": {
-        "report_id": "example-report",
-        "report_version": "v1",
-        "interview_id": "example-interview-1",
-        "question_id": "q1",
-        "reference_ids": [
-          "ref-1"
-        ]
-      },
-      "supporting_references": [
+      "study_id": "example-study",
+      "index_status": "ready",
+      "latest_report_id": "example-report",
+      "indexed_report_id": "example-report",
+      "results": [
         {
-          "reference_id": "ref-1",
+          "content_id": "example-content-1",
+          "report_id": "example-report",
+          "report_generated_at": "2026-09-16T09:00:00Z",
+          "research_period": null,
+          "content_type": "participant_response",
           "interview_id": "example-interview-1",
-          "message_id": "m1",
-          "quote": "I would try a smaller pack before buying a full month."
+          "content": {
+            "interview_id": "example-interview-1",
+            "overall_takeaways": ["The participant wanted a smaller initial commitment."],
+            "learning_goal_responses": [
+              {
+                "learning_goal_id": "goal-1",
+                "summary": "Wants a smaller starter pack before committing.",
+                "quote": "I would try a smaller pack before buying a full month."
+              }
+            ]
+          }
         }
-      ],
-      "is_stale": false
+      ]
     }
   ],
-  "coverage": {
-    "searched_content_types": [
-      "study_finding",
-      "participant_response"
-    ],
-    "transcripts_searched": false,
-    "index_updated_at": "2026-09-16T09:00:00Z"
-  },
-  "next_cursor": null
+  "next_cursor": null,
+  "generated_content_returned": false
 }

@@ -20,15 +20,15 @@ The default is **fictional fixture mode**: no credentials, network calls, invita
 | --- | --- | --- |
 | [Conduct a study](examples/conduct-a-study/) | Create, customize, review, estimate, launch, monitor, and retrieve | `npm run study` |
 | [Retrieve study results](examples/retrieve-study-results/) | Read report sections and follow references to interviews | `npm run results` |
-| [Search research](examples/search-research/) | Find relevant evidence, inspect coverage, and retrieve sources | `npm run search` |
+| [Search research](examples/search-research/) | Find indexed evidence and retrieve sources | `npm run search` |
 
 For agent frameworks, see the [OpenAI Agents SDK, LangChain, and Vercel AI SDK examples](toolkits/README.md). They connect to the authenticated read-only MCP profile.
 
 ## Compatibility
 
-**B2/C1 release verification is pending.** The results and search adapters implement the agreed example shapes; final endpoint names and nested schemas must be reconciled with the release. See [release-contract.json](release-contract.json) and the [verification checklist](docs/release-check.md). Do not infer production compatibility from passing fixture tests.
+The report and search examples were reconciled with the staging and production OpenAPI schemas on October 5, 2026, and their read-only calls were checked against a staging study. See [release-contract.json](release-contract.json) and the [verification record](docs/release-check.md). Authenticated production behavior was not tested by this check.
 
-Existing study routes follow the public OpenAPI in docs commit `555c39fe5195093c5719b0a89f8f47c99887035d`, inspected September 16, 2026. Examples are maintained here; the public API reference remains authoritative. This repository is an example integration, not an official SDK or a guarantee of compatibility with every version.
+The public API reference remains authoritative as the service evolves. This repository is an example integration, not an official SDK or a guarantee of compatibility with every version.
 
 ## Connect a live account
 
@@ -57,7 +57,7 @@ npm run demo
 npm run check:release -- /path/to/released-openapi.json
 ```
 
-Tests cover reference resolution, explicit launch approval, invalid inputs, and failure handling. The included CI template runs fixtures only. To enable GitHub Actions, a repository maintainer with workflow permission can copy `docs/github-actions.example.yml` to `.github/workflows/check.yml`. CI is not enabled yet. The release check detects missing paths/fields; it does not authenticate or establish live behavior.
+Tests cover reference resolution, explicit launch approval, invalid inputs, and failure handling. The included CI template runs fixtures only. To enable GitHub Actions, a repository maintainer with workflow permission can copy `docs/github-actions.example.yml` to `.github/workflows/check.yml`. CI is not enabled yet. The release check detects missing paths and fields; the recorded staging calls provide the separate live check.
 
 ## Support and contributions
 

@@ -9,26 +9,23 @@ test("Every fixture answer resolves to exact text in its own interview", async (
     await fixture<
       Array<{ id: string; messages: Array<{ id: string; message: string }> }>
     >("interviews");
-  const matrix = report.participant_responses as {
-    respondents: Array<{
-      interview_id: string;
-      answers: Array<{ reference_ids: string[] }>;
-    }>;
-  };
-  for (const row of matrix.respondents)
-    for (const answer of row.answers)
-      for (const ref of referencesForAnswer(
-        report,
-        row.interview_id,
-        answer.reference_ids,
-      )) {
+  const findings = report.study_findings?.learning_goals?.flatMap(
+    (goal) => goal.findings ?? [],
+  ) ?? [];
+  assert.equal(findings.length, 2);
+  for (const finding of findings)
+    for (const id of finding.reference_ids ?? []) {
+      const candidate = report.references.find((ref) => ref.reference_id === id);
+      assert.ok(candidate?.interview_id);
+      for (const ref of referencesForAnswer(report, candidate.interview_id, [id])) {
         assert.equal(
           interviews
-            .find((i) => i.id === row.interview_id)
-            ?.messages.find((m) => m.id === ref.message_id)?.message,
-          ref.quote,
+            .find((i) => i.id === ref.interview_id)
+            ?.messages.find((m) => m.id === ref.turn_id)?.message,
+          ref.message_text,
         );
       }
+    }
   assert.throws(() =>
     referencesForAnswer(report, "example-interview-2", ["ref-1"]),
   );
@@ -39,7 +36,7 @@ test("A missing approval or different study cannot launch", () => {
   assertLaunchApproval("study-a", "study-a");
 });
 test("Invalid limits and credential destinations fail locally", () => {
-  for (const n of ["0", "NaN", "2.2", "101"]) assert.throws(() => limit(n));
+  for (const n of ["0", "NaN", "2.2", "51"]) assert.throws(() => limit(n));
   assert.throws(
     () => new ResearchClient({ base: "http://example.com", key: "test" }),
   );
