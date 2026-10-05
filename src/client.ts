@@ -80,8 +80,3 @@ export class ResearchClient {
     }
   }
 }
-export function releaseNotice() {
-  console.error(
-    "B2/C1 adapter follows an example contract pending release verification. Check docs/release-check.md before production use.",
-  );
-}

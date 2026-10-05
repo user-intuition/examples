@@ -1,26 +1,18 @@
-# Verify the examples against the B2/C1 release
+# Release compatibility check
 
-Status: prepared against agreed example contracts; production verification pending.
+Verified on 2026-10-05 against the staging API and the published `@userintuition-ai/mcp@0.16.7` tool surface. The production OpenAPI document has the same relevant search and report schemas; authenticated production calls were outside this check.
 
-The public copy targets the B2/C1 release. This repository makes the remaining technical verification explicit rather than presenting illustrative JSON as an established wire contract.
+## API contract
 
-## Reconcile the contract
+- Compared `https://staging.userintuition.ai/openapi.json` and `https://api.userintuition.ai/openapi.json` for the report and search paths, request and response fields, result variants, and limits. Both matched. Run `npm run check:release -- /path/to/openapi.json` to repeat the structural check.
+- `GET /api/public/v1/studies/{study_id}/report?view=full` returns `report-v2` with report sections, `references`, evidence coverage, interview count basis, and freshness. References carry `turn_id` and `message_text` when available. The example reads an existing report; it does not request report generation.
+- `POST /api/public/v1/research/search/` requires `filters.study_ids`. Results are grouped in `studies[]`; each canonical result has a `content_id`, `content_type`, structured `content`, and `report_id`. The limit is at most 50. Continue with the opaque `next_cursor` and unchanged query, filters, and limit. `generated_content_returned` is false.
+- Fictional fixtures were updated to the same shape. They contain no participant data from staging or production.
 
-1. Obtain the released OpenAPI document and MCP/CLI catalog; record versions and date.
-2. Run `npm run check:release -- /path/to/released-openapi.json`. Missing fields or paths produce a nonzero exit. This is a presence check, not full validation.
-3. Update `src/contracts.ts` and `release-contract.json`: C1 route/method, request filters, limits/cursor semantics, content types, B2 section names/shapes, reference fields, report version and coverage/freshness metadata.
-4. Check which citations are interview-level and which include exact message/passages. Keep unavailable references explicit. Confirm timestamp/date-filter meanings and the actual search index coverage.
-5. Adjust fixtures and tests to the released shape. Fixtures must stay fictional and labeled; do not copy production participant data into this public repository.
-6. Run type checking, tests, and all fixture demos.
+## Staging reads
 
-## Narrow live validation
+Using an authorized staging test study, the live report example retrieved a structured report with six included sections and 50 references. The live search example retrieved a grouped result and a cursor; the next page had a different result. Both `--fetch-source` paths retrieved supporting source context. These were read-only calls; no panel was launched or reward sent.
 
-Use an authorized staging account or a designated test study, not a broad authenticated product audit.
+The toolkit examples connected to the staging read-only MCP endpoint through OpenAI Agents, LangChain, and the Vercel AI SDK. Each discovered 25 read-only tools. OpenAI Agents and LangChain called `get_study`; the Vercel AI SDK also executed `get_study` successfully. These checks did not invoke a model or measure answer quality.
 
-- Fetch B2 and verify section content, source links, sample coverage, and stale/unknown semantics.
-- Search for a known passage, an exact product name, and a paraphrase; check relevance and source retrieval.
-- Check empty results, invalid requests, pagination with unchanged filters, and denied access in an appropriate test setup.
-- Confirm report regeneration does not silently resolve an old citation to unrelated new content.
-- Verify study creation/customization against a test study without automatically launching recruitment. Paid validation is a separate approved action.
-
-Record actual results and compatibility versions. Mark the contract verified only after schema reconciliation and required live checks. Passing a fixture demo, an HTTP 200, or a schema presence check alone is insufficient.
+Local type checking, fixture demos, root tests, toolkit tests, and the OpenAPI checker passed. Search relevance for arbitrary questions, report regeneration behavior, and production permissions remain outside this narrow compatibility check. Recheck the live contract when integrating a newer API version.

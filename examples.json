@@ -1,7 +1,7 @@
 {
   "repository": "https://github.com/user-intuition/examples",
   "runtime": "Node.js >=22.18.0",
-  "compatibility": "B2/C1 illustrative adapters: release verification pending",
+  "compatibility": "Report and search adapters checked against 2026-10-05 OpenAPI and staging reads; production live calls not checked",
   "examples": [
     {
       "name": "conduct-a-study",
@@ -25,22 +25,23 @@
       "effects": "Read-only in live mode; it does not generate a report or start research.",
       "errors": "Missing credentials or study ID, HTTP failures, invalid JSON, and unresolved source interviews are failures, not empty evidence. Stale or unknown freshness is reported separately.",
       "path": "examples/retrieve-study-results/index.ts",
-      "sha256": "a2ba59e78bfd70c227e357788a34ed1ccb6424e5915a99bcb419c6247bdda2a3",
+      "sha256": "1dca3ac1a43df59b393f2d163e86128c731b146ce505d177a633e4e6bbc69672",
       "source_url": "https://raw.githubusercontent.com/user-intuition/examples/main/examples/retrieve-study-results/index.ts",
       "documentation": "https://docs.userintuition.ai/api-reference/examples/retrieve-study-results"
     },
     {
       "name": "search-research",
+      "docsSlug": "search-research-example",
       "command": "search",
       "title": "Search research",
-      "inputs": "Use --query with the research question. Optional --study, --cursor, --limit, and --fetch-source constrain or extend retrieval. Fixture mode returns a fixed match and does not execute the query.",
-      "output": "JSON containing mode, request, and response. The response includes results, next_cursor, and coverage. With --fetch-source, a second object contains source_kind and source or explains that there are no matches.",
+      "inputs": "Use --query with the research question and --study for a live scoped search. Optional --cursor, --limit, and --fetch-source constrain or extend retrieval. Fixture mode returns a fixed match and does not execute the query.",
+      "output": "JSON containing mode, request, and response. The response groups canonical results under studies and includes next_cursor. With --fetch-source, a second object contains source_kind and source or explains that there are no matches.",
       "effects": "Retrieves existing evidence; does not create studies, regenerate reports, invite people, or launch recruitment.",
-      "errors": "Invalid limits, missing live credentials, HTTP errors, invalid response shapes, and unresolved sources are failures. A successful empty results array is distinct from these errors.",
+      "errors": "Invalid limits, missing live credentials or study ID, HTTP errors, invalid response shapes, and unresolved sources are failures. A successful empty nested results array is distinct from these errors.",
       "path": "examples/search-research/index.ts",
-      "sha256": "36c6a387b1ff89d12e48f9ae22f0f867e47424cb6214cfe40b7fb680e7f148d8",
+      "sha256": "f9d5d4e9d49b518feb7e22fbce170bbc661184ccc16c039cb94e282bbcabbfe5",
       "source_url": "https://raw.githubusercontent.com/user-intuition/examples/main/examples/search-research/index.ts",
-      "documentation": "https://docs.userintuition.ai/api-reference/examples/search-research"
+      "documentation": "https://docs.userintuition.ai/api-reference/examples/search-research-example"
     }
   ]
 }

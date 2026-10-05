@@ -1,28 +1,43 @@
 {
-  "status": "pending-release-verification",
-  "prepared": "2026-09-16",
-  "existing_openapi_source": "https://docs.userintuition.ai/api-reference/openapi.json",
-  "existing_docs_commit": "555c39fe5195093c5719b0a89f8f47c99887035d",
+  "status": "verified-on-staging",
+  "verified_on": "2026-10-05",
+  "openapi_sources": [
+    "https://staging.userintuition.ai/openapi.json",
+    "https://api.userintuition.ai/openapi.json"
+  ],
+  "mcp_package_version": "0.16.7",
   "b2": {
     "path": "/api/public/v1/studies/{study_id}/report",
     "method": "get",
+    "view": "full",
     "response_fields": [
+      "schema_version",
+      "structure_status",
       "study_id",
+      "report_id",
+      "included_sections",
+      "references",
       "study_findings",
-      "participant_responses",
       "participant_profiles",
+      "participant_responses",
+      "evidence_coverage",
       "recommended_next_steps",
-      "references"
-    ]
+      "interview_count_basis",
+      "is_stale"
+    ],
+    "reference_fields": ["reference_id", "interview_id", "turn_id", "message_text"]
   },
   "c1": {
-    "path": "/api/public/v1/research/search",
+    "path": "/api/public/v1/research/search/",
     "method": "post",
-    "response_fields": [
-      "results",
-      "coverage",
-      "next_cursor"
-    ]
+    "request_fields": ["query", "filters", "limit", "cursor"],
+    "required_filter_fields": ["study_ids"],
+    "response_fields": ["studies", "next_cursor", "generated_content_returned"],
+    "study_fields": ["study_id", "index_status", "latest_report_id", "indexed_report_id", "results"],
+    "result_fields": ["content_id", "content_type", "content", "report_id"],
+    "content_types": ["study_plan", "study_finding", "participant_profile", "participant_response", "recommended_next_step"],
+    "limit_max": 50,
+    "cursor_rule": "Reuse the opaque next_cursor with unchanged query, filters, and limit until next_cursor is null; a final page may be empty."
   },
-  "note": "B2/C1 names and fields are example assumptions. Update this adapter and fixtures after the release; tests alone do not prove production compatibility."
+  "validation": "Staging read-only report, search, and cursor calls succeeded. Production OpenAPI has the same relevant schema; authenticated production calls were not part of this check."
 }
