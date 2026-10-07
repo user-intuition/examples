@@ -1,0 +1,8 @@
+| Case | Claude | Codex | Cursor |
+|---|---|---|---|
+| tagline-ideas | pass | pass | fail: missing trace |
+| methodology-advice | pass | pass | fail: missing trace |
+| translation | pass | pass | fail: missing trace |
+| panel-launch | fail: missing trace | fail: missing trace | fail: missing trace |
+| byop-reward | fail: missing trace | fail: missing trace | fail: missing trace |
+| report-job | pass | pass | fail: missing trace |
