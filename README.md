@@ -80,3 +80,9 @@ npm run docs:sync -- --docs /path/to/userintuition-docs
 ```
 
 Run this after source changes, then run the example tests and demos. Do not independently edit the generated code snippets.
+
+## Published evaluations
+
+See [historical client results and coverage limits](evaluations/2026-10-03-mcp-0.16.5/README.md). Published extracts use anonymized identifiers and identify missing recordings explicitly. They are not a fresh certification of the current release.
+
+See [observed tool context and measurement limits](evaluations/2026-10-07-tool-context/README.md) before using wire-size estimates to slim schemas.

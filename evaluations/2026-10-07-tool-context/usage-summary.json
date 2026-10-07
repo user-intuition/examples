@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-07",
+  "mcp_version": "0.16.10",
+  "claude_code_version": "2.1.222",
+  "codex_cli_version": "0.160.1",
+  "claude": {
+    "none": {
+      "input_tokens_including_cache": 7959,
+      "turns": 1,
+      "answer": "READY"
+    },
+    "core": {
+      "input_tokens_including_cache": 27544,
+      "turns": 1,
+      "answer": "READY"
+    },
+    "full": {
+      "input_tokens_including_cache": 34372,
+      "turns": 1,
+      "answer": "READY"
+    },
+    "core-no-output": {
+      "input_tokens_including_cache": 27544,
+      "turns": 1,
+      "answer": "READY"
+    },
+    "full-no-output": {
+      "input_tokens_including_cache": 34372,
+      "turns": 1,
+      "answer": "READY"
+    }
+  },
+  "codex": {
+    "none": {
+      "input_tokens": 15046,
+      "cached_input_tokens": 12288,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5,
+      "reasoning_output_tokens": 0
+    },
+    "core": {
+      "input_tokens": 15046,
+      "cached_input_tokens": 12288,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5,
+      "reasoning_output_tokens": 0
+    },
+    "full": {
+      "input_tokens": 15046,
+      "cached_input_tokens": 12288,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5,
+      "reasoning_output_tokens": 0
+    },
+    "discovery": {
+      "input_tokens": 30880,
+      "cached_input_tokens": 24576,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 614,
+      "reasoning_output_tokens": 0
+    },
+    "discovery-no-output": {
+      "input_tokens": 30776,
+      "cached_input_tokens": 27136,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 612,
+      "reasoning_output_tokens": 0
+    }
+  },
+  "cursor": "not measured: account usage limit",
+  "chatgpt": "not measured: per-tool input context attribution unavailable"
+}
