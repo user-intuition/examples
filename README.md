@@ -24,6 +24,10 @@ The default is **fictional fixture mode**: no credentials, network calls, invita
 
 For agent frameworks, see the [OpenAI Agents SDK, LangChain, and Vercel AI SDK examples](toolkits/README.md). They connect to the authenticated read-only MCP profile.
 
+For signed webhook verification and bounded job polling in TypeScript and Python,
+see the [SDK companion helpers](docs/sdk-helpers.md). They stay outside generated
+Fern clients so regeneration preserves them.
+
 ## Compatibility
 
 The report and search examples were reconciled with the staging and production OpenAPI schemas on October 5, 2026, and their read-only calls were checked against a staging study. See [release-contract.json](release-contract.json) and the [verification record](docs/release-check.md). Authenticated production behavior was not tested by this check.
