@@ -1,8 +1,16 @@
 # User Intuition examples
 
-Add qualitative customer research to an AI agent or product: plan a study, recruit participants, conduct interviews, retrieve source-linked results, and search previous research. Your application owns the broader reasoning and customer experience.
+Add qualitative research with real people to an AI agent or product: plan a study, recruit participants, conduct AI-moderated interviews, retrieve source-linked results, and search previous research. Your application owns the broader reasoning and customer experience.
 
-[API documentation](https://docs.userintuition.ai/api-reference/introduction) · [MCP setup](https://docs.userintuition.ai/mcp-server/overview) · [Pricing](https://www.userintuition.ai/pricing/) · [Research infrastructure](https://www.userintuition.ai/platform/research-infrastructure/)
+[API documentation](https://docs.userintuition.ai/api-reference/introduction) · [MCP setup](https://docs.userintuition.ai/mcp-server/overview) · [Skills](https://github.com/user-intuition/skills) · [Pricing](https://www.userintuition.ai/pricing/) · [Research infrastructure](https://www.userintuition.ai/platform/research-infrastructure/)
+
+| Example | What you learn | Command |
+| --- | --- | --- |
+| [Conduct a study](examples/conduct-a-study/) | Create, customize, review, estimate, launch, monitor, and retrieve | `npm run study` |
+| [Retrieve study results](examples/retrieve-study-results/) | Read report sections and follow references to interviews | `npm run results` |
+| [Search research](examples/search-research/) | Find indexed evidence and retrieve sources | `npm run search` |
+
+Using an agent such as Claude Code, Codex or Cursor instead of writing code? The [User Intuition skills](https://github.com/user-intuition/skills) package the same workflows as Agent Skills, with the hosted MCP server.
 
 ## Run without an account or spending
 
@@ -14,25 +22,13 @@ cd examples
 npm run demo
 ```
 
-The default is **fictional fixture mode**: no credentials, network calls, invitations, or recruitment. Fixtures demonstrate control flow and data handling; they are not real interviews, measured product performance, or a hosted sandbox.
-
-| Example | What you learn | Command |
-| --- | --- | --- |
-| [Conduct a study](examples/conduct-a-study/) | Create, customize, review, estimate, launch, monitor, and retrieve | `npm run study` |
-| [Retrieve study results](examples/retrieve-study-results/) | Read report sections and follow references to interviews | `npm run results` |
-| [Search research](examples/search-research/) | Find indexed evidence and retrieve sources | `npm run search` |
+The default is fixture mode: no credentials, network calls, invitations, or recruitment (see [Limits](#limits)).
 
 For agent frameworks, see the [OpenAI Agents SDK, LangChain, and Vercel AI SDK examples](toolkits/README.md). They connect to the authenticated read-only MCP profile.
 
 For signed webhook verification and bounded job polling in TypeScript and Python,
 see the [SDK companion helpers](docs/sdk-helpers.md). They stay outside generated
-Fern clients so regeneration preserves them.
-
-## Compatibility
-
-The report and search examples were reconciled with the staging and production OpenAPI schemas on October 5, 2026, and their read-only calls were checked against a staging study. See [release-contract.json](release-contract.json) and the [verification record](docs/release-check.md). Authenticated production behavior was not tested by this check.
-
-The public API reference remains authoritative as the service evolves. This repository is an example integration, not an official SDK or a guarantee of compatibility with every version.
+API clients so regeneration preserves them.
 
 ## Connect a live account
 
@@ -61,7 +57,19 @@ npm run demo
 npm run check:release -- /path/to/released-openapi.json
 ```
 
-Tests cover reference resolution, explicit launch approval, invalid inputs, and failure handling. The included CI template runs fixtures only. To enable GitHub Actions, a repository maintainer with workflow permission can copy `docs/github-actions.example.yml` to `.github/workflows/check.yml`. CI is not enabled yet. The release check detects missing paths and fields; the recorded staging calls provide the separate live check.
+Tests cover reference resolution, explicit launch approval, invalid inputs, and failure handling. [CI](.github/workflows/ci.yml) runs `npm ci`, typecheck, tests and the demo in fixture mode on every pull request. The release check detects missing paths and fields; the recorded staging calls provide the separate live check.
+
+## Limits
+
+### Fixture mode
+
+Fixtures are fictional. They demonstrate control flow and data handling; they are not real interviews, measured product performance, or a hosted sandbox.
+
+### Compatibility
+
+The report and search examples were reconciled with the staging and production OpenAPI schemas on October 5, 2026, and their read-only calls were checked against a staging study. See [release-contract.json](release-contract.json) and the [verification record](docs/release-check.md). Authenticated production behavior was not tested by this check.
+
+The public API reference remains authoritative as the service evolves. This repository is an example integration, not an official SDK or a guarantee of compatibility with every version.
 
 ## Support and contributions
 
