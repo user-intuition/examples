@@ -1,5 +1,8 @@
-name: Check examples
-on: [push, pull_request]
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
 permissions:
   contents: read
 jobs:
@@ -14,4 +17,5 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
+      # Fixture mode (no --live): no credentials, network calls, invitations or recruitment.
       - run: npm run demo
