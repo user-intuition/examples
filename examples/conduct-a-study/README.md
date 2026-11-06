@@ -65,7 +65,7 @@ npm run study -- --live --action generate-report --study YOUR_STUDY_ID
 npm run results -- --live --study YOUR_STUDY_ID
 ```
 
-Report generation is a separate write. Read the latest report after an interrupted generation before retrying. The B2 response adapter requires [release verification](../../docs/release-check.md).
+Report generation is a separate write. Read the latest report after an interrupted generation before retrying.
 
 ## Your own participants
 

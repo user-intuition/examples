@@ -67,7 +67,7 @@ Fixtures are fictional. They demonstrate control flow and data handling; they ar
 
 ### Compatibility
 
-The report and search examples were reconciled with the staging and production OpenAPI schemas on October 5, 2026, and their read-only calls were checked against a staging study. See [release-contract.json](release-contract.json) and the [verification record](docs/release-check.md). Authenticated production behavior was not tested by this check.
+The report and search examples follow the public OpenAPI contract recorded in [release-contract.json](release-contract.json). Run `npm run check:release` against a released OpenAPI document to confirm a newer API version still matches.
 
 The public API reference remains authoritative as the service evolves. This repository is an example integration, not an official SDK or a guarantee of compatibility with every version.
 
