@@ -9,7 +9,7 @@ npm run search
 npm run search -- --live --query "What makes customers hesitate before buying?" --study YOUR_STUDY_ID
 ```
 
-Fixture mode returns a fixed fictional match; it does not execute your query. Live mode requires one study ID and uses the [verified public search contract](../../docs/release-check.md).
+Fixture mode returns a fixed fictional match; it does not execute your query. Live mode requires one study ID and uses the public search contract.
 
 The example searches findings and participant-response summaries. The intended service combines keyword and semantic matching. It retrieves evidence; it does not produce the calling agent's business recommendation.
 

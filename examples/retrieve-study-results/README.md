@@ -9,7 +9,7 @@ npm run results
 npm run results -- --live --study YOUR_STUDY_ID
 ```
 
-The first command prints a fictional fixture. The second retrieves an existing report with `view=full`; it does not regenerate analysis. See the [release verification](../../docs/release-check.md).
+The first command prints a fictional fixture. The second retrieves an existing report with `view=full`; it does not regenerate analysis.
 
 ## Report sections, different meanings
 
